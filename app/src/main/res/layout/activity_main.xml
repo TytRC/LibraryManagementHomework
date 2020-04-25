@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:androide="http://schemas.android.com/apk/res/android"
+    androide:orientation="vertical"
+    androide:layout_width="match_parent"
+    androide:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        androide:layout_width="match_parent"
+        androide:layout_height="match_parent"
+        androide:id="@+id/main_view" />
+
+
+</LinearLayout>
