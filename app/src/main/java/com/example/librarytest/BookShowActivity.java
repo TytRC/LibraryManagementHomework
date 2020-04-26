@@ -35,8 +35,9 @@ public class BookShowActivity extends AppCompatActivity {
         bookAuthor.setText(Arrays.toString(book.getAuthor()).replace('[','\0').
                 replace(']','\0'));
         bookPress.setText(book.getPress());
-        bookSumNum.setText("馆藏数量：" + intent.getSerializableExtra("sum_num"));
-        bookNum.setText("借出数量：" + intent.getSerializableExtra("borrow_num"));
+        int[] num = library.query(book);
+        bookSumNum.setText("馆藏数量：" + num[0]);
+        bookNum.setText("借出数量：" + num[1]);
     }
 
 

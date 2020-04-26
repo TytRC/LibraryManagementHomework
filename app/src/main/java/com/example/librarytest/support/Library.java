@@ -1,10 +1,13 @@
 package com.example.librarytest.support;
 
+import android.annotation.SuppressLint;
+
 import java.util.*;
 
 public class Library {
     private final Map<Book, Integer> collectionNumber = new HashMap<>();
     private final Map<Book, Integer> borrowingNumber = new HashMap<>();
+    @SuppressLint("UseSparseArrays")
     private final Map<Integer, Borrower> bookToBorrower = new HashMap<>();
 
     public Boolean addBook(Book book){
@@ -74,19 +77,24 @@ public class Library {
         return false;
     }
 
-    public Book[] query(String msg){
+    public List<Book> query(String msg){
+        System.out.println(msg);
         ArrayList<Book> result = new ArrayList<>();
         Iterator<Book> bi = collectionNumber.keySet().iterator();
         Book book;
         while (bi.hasNext()){
             book = bi.next();
-            if (book.getBookName().equals(msg))
+            if (book.getBookName().contains(msg))
                 result.add(book);
         }
-        return (Book[])result.toArray();
+        return result;
     }
 
     public int[] query(Book book){
+        if (book == null)
+            return null;
+        if (collectionNumber.get(book) == null || borrowingNumber.get(book) == null)
+            return null;
         if (!collectionNumber.containsKey(book))
             return null;
         return new int[]{collectionNumber.get(book), borrowingNumber.get(book)};

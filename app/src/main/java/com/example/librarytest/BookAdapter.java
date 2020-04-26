@@ -67,13 +67,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         Book book = mBookList.get(position);
         String[] temp = book.getAuthor();
         String bookAuthor = null;
+        int[] num = Controller.getLibrary().query(book);
         if (temp != null)
             bookAuthor =  Arrays.toString(temp).replace('[','\0').
                 replace(']','\0');
         holder.bookName.setText(book.getBookName());
         holder.bookAuthor.setText("作者：" + bookAuthor);
-        holder.num.setText("馆藏数量：" + Controller.getLibrary().getCollectionNumber().get(book));
-        holder.borrowNum.setText("借出数量：" + Controller.getLibrary().getBorrowingNumber().get(book));
+        holder.num.setText("馆藏数量：" + num[0]);
+        holder.borrowNum.setText("借出数量：" + num[1]);
     }
 
     @Override

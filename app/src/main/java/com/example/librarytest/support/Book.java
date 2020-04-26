@@ -1,5 +1,10 @@
 package com.example.librarytest.support;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -13,6 +18,7 @@ import java.util.*;
  */
 
 public class Book implements Serializable {
+    @SuppressLint("UseSparseArrays")
     private static final Map<Integer, Book> idToBook = new HashMap<>();
     private static final Map<Book, List<Book>> bookMap = new HashMap<>();
     private static int cnt = 0;
@@ -53,6 +59,7 @@ public class Book implements Serializable {
         return result;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -62,7 +69,7 @@ public class Book implements Serializable {
         Book book = (Book) obj;
         if (author == null && book.author != null)
             return false;
-        return equalString(this.press, book.press) && author.equals(book.author)
+        return equalString(this.press, book.press) && Objects.equals(author, book.author)
                 && equalString(this.bookName, book.bookName);
     }
 

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:androide="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     androide:orientation="vertical"
     androide:layout_width="match_parent"
     androide:layout_height="match_parent">
+
+    <androidx.appcompat.widget.SearchView
+        androide:layout_width="match_parent"
+        androide:layout_height="wrap_content"
+        app:queryHint="Input keyword please."
+        androide:id="@+id/search"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         androide:layout_width="match_parent"
